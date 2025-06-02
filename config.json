@@ -1,5 +1,5 @@
 {
-    "language": "en",
+    "language": "en bn",
     "keyActive": "",
     "DeveloperMode": false,
     "autoCreateDB": true,
@@ -16,11 +16,11 @@
     "EMAIL": "",
     "PASSWORD": "",
     "OTPKEY": "",
-    "BOTNAME": "𝐂𝐘𝐁𝐄𝐑 ☢️_𖣘 -𝐁𝐎𝐓 ⚠️",
-    "PREFIX": "/",
+    "BOTNAME": "Villen Abir",
+    "PREFIX": "/+!?&",
     "ADMINBOT": [
-        "100000478146113",
-        "61576520552554",
+        "61569107143491",
+        "61563837735839",
         "61550035211214"
     ],
     "NDH": [
