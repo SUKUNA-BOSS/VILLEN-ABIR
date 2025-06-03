@@ -1,128 +1,36 @@
-[
-    {
-        "key": "sb",
-        "value": "oPA9aMCmHfsStQQD8qcpU39e",
-        "domain": "facebook.com",
-        "path": "/",
-        "hostOnly": false,
-        "creation": "2025-06-03T01:53:41.355Z",
-        "lastAccessed": "2025-06-03T01:53:41.355Z"
-    },
-    {
-        "key": "dpr",
-        "value": "2.75",
-        "domain": "facebook.com",
-        "path": "/",
-        "hostOnly": false,
-        "creation": "2025-06-03T01:53:41.355Z",
-        "lastAccessed": "2025-06-03T01:53:41.355Z"
-    },
-    {
-        "key": "locale",
-        "value": "en_GB",
-        "domain": "facebook.com",
-        "path": "/",
-        "hostOnly": false,
-        "creation": "2025-06-03T01:53:41.355Z",
-        "lastAccessed": "2025-06-03T01:53:41.355Z"
-    },
-    {
-        "key": "ps_l",
-        "value": "1",
-        "domain": "facebook.com",
-        "path": "/",
-        "hostOnly": false,
-        "creation": "2025-06-03T01:53:41.355Z",
-        "lastAccessed": "2025-06-03T01:53:41.355Z"
-    },
-    {
-        "key": "ps_n",
-        "value": "1",
-        "domain": "facebook.com",
-        "path": "/",
-        "hostOnly": false,
-        "creation": "2025-06-03T01:53:41.355Z",
-        "lastAccessed": "2025-06-03T01:53:41.355Z"
-    },
-    {
-        "key": "vpd",
-        "value": "v1%3B767x393x2.75",
-        "domain": "facebook.com",
-        "path": "/",
-        "hostOnly": false,
-        "creation": "2025-06-03T01:53:41.355Z",
-        "lastAccessed": "2025-06-03T01:53:41.355Z"
-    },
-    {
-        "key": "datr",
-        "value": "wVM-aPRy0iEJV7A8R1cZrY1i",
-        "domain": "facebook.com",
-        "path": "/",
-        "hostOnly": false,
-        "creation": "2025-06-03T01:53:41.355Z",
-        "lastAccessed": "2025-06-03T01:53:41.355Z"
-    },
-    {
-        "key": "m_pixel_ratio",
-        "value": "2.75",
-        "domain": "facebook.com",
-        "path": "/",
-        "hostOnly": false,
-        "creation": "2025-06-03T01:53:41.355Z",
-        "lastAccessed": "2025-06-03T01:53:41.355Z"
-    },
-    {
-        "key": "c_user",
-        "value": "61575347674732",
-        "domain": "facebook.com",
-        "path": "/",
-        "hostOnly": false,
-        "creation": "2025-06-03T01:53:41.355Z",
-        "lastAccessed": "2025-06-03T01:53:41.355Z"
-    },
-    {
-        "key": "xs",
-        "value": "35%3AgZbsWa30k8MZwg%3A2%3A1748915607%3A-1%3A-1",
-        "domain": "facebook.com",
-        "path": "/",
-        "hostOnly": false,
-        "creation": "2025-06-03T01:53:41.356Z",
-        "lastAccessed": "2025-06-03T01:53:41.356Z"
-    },
-    {
-        "key": "wd",
-        "value": "393x767",
-        "domain": "facebook.com",
-        "path": "/",
-        "hostOnly": false,
-        "creation": "2025-06-03T01:53:41.356Z",
-        "lastAccessed": "2025-06-03T01:53:41.356Z"
-    },
-    {
-        "key": "fr",
-        "value": "1Qoy8CJW9PYcUqqI1.AWcwPtKZgihE_JSGK6QQjjDhZCFc68wdVEJEbKbvGpG3vkmVPWo.BoPlPB..AAA.0.0.BoPlWg.AWdm6mcxAEbFW1ejOZ9QXiXW0Sg",
-        "domain": "facebook.com",
-        "path": "/",
-        "hostOnly": false,
-        "creation": "2025-06-03T01:53:41.356Z",
-        "lastAccessed": "2025-06-03T01:53:41.356Z"
-    },
-    {
-        "key": "fbl_st",
-        "value": "100426885%3BT%3A29148593",
-        "domain": "facebook.com",
-        "path": "/",
-        "hostOnly": false,
-        "creation": "2025-06-03T01:53:41.356Z",
-        "lastAccessed": "2025-06-03T01:53:41.356Z"
-    },
-    {
-        "key": "wl_cbv",
-        "value": "v2%3Bclient_version%3A2836%3Btimestamp%3A1748915616",
-        "domain": "facebook.com",
-        "path": "/",
-        "hostOnly": false,
-        "creation": "2025-06-03T01:53:41.356Z",
-        "lastAccessed": "2025-06-03T01:53:41.356Z"
-    }
-]
+name: Node.js CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    # Step to check out the repository code
+    - uses: actions/checkout@v2
+
+    # Step to set up the specified Node.js version
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    # Step to install dependencies
+    - name: Install dependencies
+      run: npm install
+
+    # Step to run the bot with the correct port
+    - name: Start the bot
+      env:
+        PORT: 8080
+      run: npm start
